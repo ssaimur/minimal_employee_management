@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    ports:
+      - '80:80'
+    depends_on:
+      - api
+      - db
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: singularity
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: passsword
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
