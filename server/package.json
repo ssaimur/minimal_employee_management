@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
-    "@types/stripe": "^8.0.417",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
     "concurrently": "^7.6.0",

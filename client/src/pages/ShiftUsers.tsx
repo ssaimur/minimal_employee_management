@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Table, Button, Space, message, Select } from 'antd'
 import { IResUser } from '../types/user.type'
 import { sendRequest } from '../configs/axios.config'
@@ -15,12 +15,7 @@ const ShiftUsersPage: React.FC = () => {
   const queryParams = new URLSearchParams(location.search)
   const shiftName = queryParams.get('shiftName')
 
-  useEffect(() => {
-    fetchAllUsers()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const fetchAllUsers = async () => {
+  const fetchAllUsers = useCallback(async () => {
     setLoading(true)
 
     const userRes = await sendRequest<IList<IResUser>>(
@@ -30,7 +25,11 @@ const ShiftUsersPage: React.FC = () => {
     userRes && setUsers(userRes.rows)
 
     setLoading(false)
-  }
+  }, [shiftId])
+
+  useEffect(() => {
+    fetchAllUsers()
+  }, [fetchAllUsers])
 
   const changeUserRole = async (user_id: number, role_id: number) => {
     setLoading(true)
