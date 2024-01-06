@@ -33,7 +33,9 @@ CREATE TABLE users (
   is_active BOOLEAN DEFAULT FALSE,
   shift_id INTEGER,
   weekday_start weekday_enum,
-  weekday_end weekday_enum
+  weekday_end weekday_enum,
+  CONSTRAINT fk_users_role_id FOREIGN KEY (role_id) REFERENCES user_roles(id),
+  CONSTRAINT fk_users_shift_id FOREIGN KEY (shift_id) REFERENCES user_shifts(id)
 );
 
 INSERT INTO user_roles (id, name, "createdAt", "updatedAt")
@@ -41,4 +43,3 @@ VALUES
   (1, 'Administrator', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   (2, 'Supervisor', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   (3, 'Employee', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
