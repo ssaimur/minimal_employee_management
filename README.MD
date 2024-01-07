@@ -35,7 +35,7 @@ This repository contains a server and client application using Docker Compose. F
 
 4. **Access the Client Application:**
 
-   Once the Docker containers are up and running successfully, open your web browser and go to [http://localhost](http://localhost) to access the client application.
+   Once the Docker containers are up and running successfully, open your web browser and go to [http://localhost](http://localhost) to access the client application and go to [http://localhost:8080/api/docs](http://localhost:8080/api/docs) to access the api documentation.
 
 ## Additional Instructions
 
